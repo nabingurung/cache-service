@@ -1,0 +1,29 @@
+name: Publish NuGet Package
+
+on:
+  push:
+    tags:
+      - 'v*'  # Trigger the workflow on version tags like 'v1.0.0'
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v1
+        with:
+          dotnet-version: '6.x'
+
+      - name: Build project
+        run: dotnet build --configuration Release
+
+      - name: Pack project
+        run: dotnet pack --configuration Release
+
+      - name: Publish to NuGet
+        run: dotnet nuget push bin/Release/*.nupkg --api-key ${{ secrets.NUGET_API_KEY }} --source https://api.nuget.org/v3/index.json
+        env:
+          NUGET_API_KEY: ${{ secrets.NUGET_API_KEY }}
