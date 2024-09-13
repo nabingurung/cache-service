@@ -1,0 +1,13 @@
+{
+    "version": "1.0",
+    "publicReleaseRefSpec": [
+      "^refs/heads/develop$",
+      "^refs/tags/v\\d+\\.\\d+"
+    ],
+    "cloudBuild": {
+      "buildNumber": {
+        "enabled": true
+      }
+    }
+  }
+  
