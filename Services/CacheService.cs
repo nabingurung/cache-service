@@ -50,6 +50,12 @@ namespace Redis.CachingService.Services
             string cacheKey = GenerateCacheKey(category, identifier);
 
             var serializedData = JsonSerializer.Serialize(data);
+
+            // if the expiry is null, by default set it to 1 hour
+            if (expiry == null)
+            {
+                expiry = TimeSpan.FromHours(1);
+            }
             await _cache.SetStringAsync(cacheKey, serializedData, new DistributedCacheEntryOptions
             {
                 AbsoluteExpirationRelativeToNow = expiry
