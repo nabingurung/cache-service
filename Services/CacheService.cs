@@ -8,7 +8,8 @@ namespace Redis.CachingService.Services
     {
         private readonly IDistributedCache _cache;
         // Define a naming convention pattern (e.g., "ContextType-queryparams")
-        private const string CacheKeyPattern = @"^[a-zA-Z]+-[a-zA-Z0-9]+$";
+        // The cache key should start with a letter, followed by a hyphen, and then a combination of letters and numbers
+         private const string CacheKeyPattern = @"^[a-zA-Z]+(-[a-zA-Z0-9]+)+$";
 
         public CacheService(IDistributedCache cache)
         {
