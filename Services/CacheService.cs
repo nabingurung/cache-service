@@ -17,7 +17,7 @@ namespace Redis.CachingService.Services
         }
 
         // Generate a cache key using the enum and identifier
-        private string GenerateCacheKey(CacheCategory category, string identifier)
+        public string GenerateCacheKey(CacheCategory category, string identifier)
         {
             string cacheKey = $"{category}-{identifier}";
             ValidateCacheKey(cacheKey);
