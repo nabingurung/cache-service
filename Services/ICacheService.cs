@@ -7,5 +7,6 @@ namespace Redis.CachingService.Services
         Task SetCachedDataAsync<T>(CacheCategory category, string cacheKey, T data, TimeSpan? expiry = null);
         Task RemoveCachedDataAsync(CacheCategory category, string cacheKey);
         void ValidateCacheKey(string cacheKey);
+        string GenerateCacheKey(CacheCategory category, string identifier);
     }
 }
